@@ -19,7 +19,7 @@ class User(BaseUser):
     last_name: str = Field(min_length=1, max_length=50, example='Gonzalez')
     birth_date: Optional[date] = Field(default=None)
 
-class UseLogin(BaseUser):
+class UserLogin(BaseUser):
     password: str = Field(min_length=8, max_length=64)
 
 
