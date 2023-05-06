@@ -19,9 +19,14 @@ class User(BaseUser):
     last_name: str = Field(min_length=1, max_length=50, example='Gonzalez')
     birth_date: Optional[date] = Field(default=None)
 
-class UserLogin(BaseUser):
+class PaswordUser(BaseModel):
     password: str = Field(min_length=8, max_length=64)
 
+class UserLogin(PaswordUser, BaseUser):
+    ...
+
+class UserRegister(PaswordUser, User):
+    ...
 
 class Tweet(BaseModel):
     tweet_id: UUID = Field()

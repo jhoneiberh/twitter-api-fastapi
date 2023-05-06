@@ -13,6 +13,7 @@ from fastapi import status
 from models import UserLogin
 from models import User
 from models import BaseUser
+from models import UserRegister
 from models import Tweet
 
 
@@ -27,7 +28,24 @@ app = FastAPI()
 ### Register a user
 @app.post('/signup', response_model=User, status_code=status.HTTP_201_CREATED, summary='Register a User', tags=['Users'])
 def signup():
-    return
+    """
+    Signup a user
+
+    This path operations register a user in the app
+
+    Parameters:
+        - Request body parameter:
+            - user: UserRegister
+
+    Returns: A json with the basic user information: \n
+        - user_id: UUID.
+        - email: EmailStr.
+        - first_name: str.  
+        - last_name: str.
+        - birth_date: date.
+        - password: str
+    """
+    
 
 ### Login a user
 @app.post('/login', response_model=UserLogin, status_code=status.HTTP_200_OK, summary='Login a User', tags=['Users'])
