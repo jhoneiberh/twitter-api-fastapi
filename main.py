@@ -70,7 +70,28 @@ def login():
 ### Show all users
 @app.get('/users', response_model=List[User], status_code=status.HTTP_200_OK, summary='Show all users', tags=['Users'])
 def show_all_users():
-    return
+    """
+    Show all Users
+
+    This path operations show all users in the app
+
+    Parameters:
+    - Nothing
+
+    Returns: A json list with all users in the app, with the following keys: 
+    - user_id: UUID.
+    - email: EmailStr.
+    - first_name: str.  
+    - last_name: str.
+    - birth_date: date.
+    - password: str
+
+    """
+
+    with open('users.json', 'r', encoding='utf-8') as f:
+        results = json.loads(f.read())
+
+        return results
 
 ### Show a user
 @app.get('/users/{user_id}', response_model=User, status_code=status.HTTP_200_OK, summary='Show a User', tags=['Users'])
