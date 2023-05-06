@@ -1,5 +1,18 @@
 [
     {
-        
+        "user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "email": "juan@gmail.com",
+        "first_name": "Juan",
+        "last_name": "Gonzalez",
+        "birth_date": "2023-05-06",
+        "password": "nghjfdfv-vdfj-hfdhrhtrh"
+    },
+    {
+        "user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "email": "pedro@gmail.com",
+        "first_name": "Pedro",
+        "last_name": "Martinez",
+        "birth_date": "2023-05-06",
+        "password": "hola-pedro-mart"
     }
 ]

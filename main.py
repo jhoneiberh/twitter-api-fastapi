@@ -1,5 +1,6 @@
 # python
 from typing import List
+import json
 
 # pydantic
 
@@ -7,6 +8,7 @@ from typing import List
 # fastapi
 from fastapi import FastAPI
 from fastapi import status
+from fastapi import Body
 
 # Models
 
@@ -27,7 +29,7 @@ app = FastAPI()
 
 ### Register a user
 @app.post('/signup', response_model=User, status_code=status.HTTP_201_CREATED, summary='Register a User', tags=['Users'])
-def signup():
+def signup(user: UserRegister = Body()):
     """
     Signup a user
 
@@ -45,6 +47,19 @@ def signup():
         - birth_date: date.
         - password: str
     """
+    with open('users.json', 'r+', encoding='utf-8') as f:
+        results = json.loads(f.read())
+
+        user_dict = user.dict()
+        user_dict['user_id'] = str(user_dict['user_id'])
+        user_dict['birth_date'] = str(user_dict['birth_date'])
+        
+        results.append(user_dict) # añadir el usuario al json
+        f.seek(0) # moverse al inicio del archivo
+        f.write(json.dumps(results)) # escribir en el json, conviertiendo el dict en json
+
+        return user
+
     
 
 ### Login a user
