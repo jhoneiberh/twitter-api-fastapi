@@ -121,8 +121,42 @@ def home():
 
 ### Post a tweet
 @app.post('/post/', response_model=Tweet, status_code=status.HTTP_201_CREATED, summary='Post a Tweet', tags=['Tweets'])
-def post():
-    return
+def post(tweet: Tweet = Body()):
+    """
+    Post a Tweet
+
+    This path operations post a tweet in the app
+
+    Parameters:
+        - Request body parameter:
+            - tweet: Tweet
+
+    Returns: A json with the basic user information: \n
+        - tweet_id: UUID.
+        - content: str.
+        - created_at: datetime.  
+        - updated_at: Optional[datetime].
+        - by: User.
+    """
+    with open('tweets.json', 'r+', encoding='utf-8') as f:
+        results = json.loads(f.read())
+
+        tweet_dict = tweet.dict()
+        tweet_dict['tweet_id'] = str(tweet_dict['tweet_id'])
+        # tweet_dict['by'] = str(tweet_dict['by'])
+        tweet_dict['created_at'] = str(tweet_dict['created_at'])
+        if tweet_dict['updated_at']:
+            tweet_dict['updated_at'] = str(tweet_dict['updated_at'])
+
+        
+        tweet_dict['by']['user_id'] = str(tweet_dict['by']['user_id'])
+        tweet_dict['by']['birth_date'] = str(tweet_dict['by']['birth_date'])
+        
+        results.append(tweet_dict) # añadir el tweet al json
+        f.seek(0) # moverse al inicio del archivo
+        f.write(json.dumps(results)) # escribir en el json, conviertiendo el dict en json
+
+        return tweet
 
 ### Show a tweet
 @app.get('/tweets/{tweet_id}', response_model=Tweet, status_code=status.HTTP_200_OK, summary='Show a Tweet', tags=['Tweets'])
