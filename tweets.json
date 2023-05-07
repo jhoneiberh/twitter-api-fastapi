@@ -1,28 +1,28 @@
 [
     {
-        "tweet_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-        "content": "Hoy es un excelente dia para crear una API Rest",
-        "created_at": "2023-05-06 17:37:45.910510",
-        "updated_at": "2023-05-06 22:37:52.373000+00:00",
+        "tweet_id": "635a3d76-3fa8-4a52-b2a7-1dad4c7f71fd",
+        "content": "string",
+        "created_at": "2023-05-06 18:15:41.469287",
+        "updated_at": "2023-05-06 23:15:58.762000+00:00",
         "by": {
             "user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-            "email": "laura@gmail.com",
-            "first_name": "Laura",
-            "last_name": "Martinez",
-            "birth_date": "2010-03-10"
+            "email": "example@gmail.com",
+            "first_name": "Juan",
+            "last_name": "Gonzalez",
+            "birth_date": "2023-05-06"
         }
     },
     {
-        "tweet_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-        "content": "Aprendiendo sobre API Rest",
-        "created_at": "2023-05-06 17:37:45.910510",
-        "updated_at": "2023-05-06 22:37:52.373000+00:00",
+        "tweet_id": "e6346908-70bf-44ee-bc40-91de6e6c6f05",
+        "content": "string",
+        "created_at": "2023-05-06 18:15:41.469287",
+        "updated_at": "2023-05-06 23:15:58.762000+00:00",
         "by": {
             "user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-            "email": "facundo@gmail.com",
-            "first_name": "Facundo",
-            "last_name": "Martoni",
-            "birth_date": "2021-05-12"
+            "email": "example@gmail.com",
+            "first_name": "Juan",
+            "last_name": "Gonzalez",
+            "birth_date": "2023-05-06"
         }
     }
 ]

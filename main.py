@@ -1,14 +1,20 @@
 # python
 from typing import List
+from uuid import uuid4
+from uuid import UUID
 import json
 
 # pydantic
+
 
 
 # fastapi
 from fastapi import FastAPI
 from fastapi import status
 from fastapi import Body
+from fastapi import Path
+from fastapi import HTTPException
+
 
 # Models
 
@@ -51,7 +57,8 @@ def signup(user: UserRegister = Body()):
         results = json.loads(f.read())
 
         user_dict = user.dict()
-        user_dict['user_id'] = str(user_dict['user_id'])
+        # user_dict['user_id'] = str(user_dict['user_id'])
+        user_dict['user_id'] = str(uuid4())
         user_dict['birth_date'] = str(user_dict['birth_date'])
         
         results.append(user_dict) # añadir el usuario al json
@@ -95,8 +102,16 @@ def show_all_users():
 
 ### Show a user
 @app.get('/users/{user_id}', response_model=User, status_code=status.HTTP_200_OK, summary='Show a User', tags=['Users'])
-def show_a_user():
-    return
+def show_a_user(user_id: str = Path(example='635a3d76-3fa8-4a52-b2a7-1dad4c7f71fd')):
+    
+    with open('users.json', 'r+', encoding='utf-8') as f:
+        results = json.loads(f.read())
+        
+    for item in results:
+        if str(item['user_id']) == user_id:
+            return item
+    else:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f'This user doesn\'t exist {user_id}')
 
 ### Delete a user
 @app.delete('/users/{user_id}/delete', response_model=User, status_code=status.HTTP_200_OK, summary='Delete a User', tags=['Users'])
@@ -115,9 +130,27 @@ def update_a_user():
 ### Show all tweets
 @app.get('/', response_model=List[Tweet], status_code=status.HTTP_200_OK, summary='Show all tweets', tags=['Tweets'])
 def home():
-    return {
-        'TwitterAPI': 'Working'
-    }
+    """
+    Show all Tweets
+
+    This path operations show all tweets in the app
+
+    Parameters:
+    - Nothing
+
+    Returns: A json list with all tweets in the app, with the following keys: 
+    - tweet_id: UUID.
+    - content: str.
+    - created_at: datetime.  
+    - updated_at: Optional[datetime].
+    - by: User.
+
+    """
+
+    with open('tweets.json', 'r', encoding='utf-8') as f:
+        results = json.loads(f.read())
+
+        return results
 
 ### Post a tweet
 @app.post('/post/', response_model=Tweet, status_code=status.HTTP_201_CREATED, summary='Post a Tweet', tags=['Tweets'])
@@ -142,7 +175,8 @@ def post(tweet: Tweet = Body()):
         results = json.loads(f.read())
 
         tweet_dict = tweet.dict()
-        tweet_dict['tweet_id'] = str(tweet_dict['tweet_id'])
+        # tweet_dict['tweet_id'] = str(tweet_dict['tweet_id'])
+        tweet_dict['tweet_id'] = str(uuid4())
         # tweet_dict['by'] = str(tweet_dict['by'])
         tweet_dict['created_at'] = str(tweet_dict['created_at'])
         if tweet_dict['updated_at']:
@@ -160,8 +194,19 @@ def post(tweet: Tweet = Body()):
 
 ### Show a tweet
 @app.get('/tweets/{tweet_id}', response_model=Tweet, status_code=status.HTTP_200_OK, summary='Show a Tweet', tags=['Tweets'])
-def show_a_tweet():
-    return
+def show_a_tweet(tweet_id: str = Path(example='3fa85f64-5717-4562-b3fc-2c963f66afa6')):
+     
+    with open('tweets.json', 'r+', encoding='utf-8') as f:
+        results = json.loads(f.read())
+
+        for item in results:
+            if item['tweet_id'] == tweet_id:
+                return item
+        else:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='This tweet doesn\'t exist')
+
+
+       
 
 ### Show a tweet
 @app.delete('/tweets/{tweet_id}/delete', response_model=Tweet, status_code=status.HTTP_200_OK, summary='Delete a Tweet', tags=['Tweets'])

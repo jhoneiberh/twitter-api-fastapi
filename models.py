@@ -1,6 +1,6 @@
 # python
 from typing import Optional
-from uuid import UUID
+from uuid import UUID, uuid4
 from datetime import date
 from datetime import datetime
 
@@ -11,7 +11,7 @@ from pydantic import EmailStr
 
 
 class BaseUser(BaseModel):
-    user_id: UUID = Field()
+    user_id: UUID = Field(default_factory=uuid4)
     email: EmailStr = Field(example='example@gmail.com')
 
 class User(BaseUser):
@@ -29,7 +29,7 @@ class UserRegister(PaswordUser, User):
     ...
 
 class Tweet(BaseModel):
-    tweet_id: UUID = Field()
+    tweet_id: UUID = Field(default_factory=uuid4)
     content: str = Field(min_length=1, max_length=256)
     created_at: datetime = Field(default=datetime.now())
     updated_at: Optional[datetime] = Field(default=None)
