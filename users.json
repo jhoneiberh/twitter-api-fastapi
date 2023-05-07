@@ -1,26 +1,18 @@
 [
     {
-        "user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-        "email": "mauricio@gmail.com",
-        "first_name": "Mauricio",
-        "last_name": "Herrera",
-        "birth_date": "2023-05-06",
-        "password": "mauricio"
-    },
-    {
-        "user_id": "4ed4a8f9-7d60-40aa-b5ff-c8fd79025f8d",
+        "user_id": "260c1639-53e4-4e69-a13b-b1248c4ab362",
         "email": "example@gmail.com",
         "first_name": "Juan",
         "last_name": "Gonzalez",
-        "birth_date": "2023-05-06",
+        "birth_date": "2023-05-07",
         "password": "stringst"
     },
     {
-        "user_id": "5a0c3302-f8d3-48ad-83ed-610a0803746e",
-        "email": "lucas@gmail.com",
-        "first_name": "Lucas",
-        "last_name": "Banguera",
-        "birth_date": "2023-05-06",
-        "password": "lucaslucas"
+        "user_id": "01e52f4a-8d5a-454c-a57f-c64bcbe02397",
+        "email": "example@gmail.com",
+        "first_name": "Juan",
+        "last_name": "Gonzalez",
+        "birth_date": "2023-05-07",
+        "password": "stringst"
     }
 ]

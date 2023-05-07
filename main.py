@@ -107,22 +107,36 @@ def show_a_user(user_id: str = Path(example='635a3d76-3fa8-4a52-b2a7-1dad4c7f71f
     with open('users.json', 'r+', encoding='utf-8') as f:
         results = json.loads(f.read())
         
-    for item in results:
-        if str(item['user_id']) == user_id:
+    for index, item in enumerate(results):
+        if item['user_id'] == user_id:  
+            print('Hola')
             return item
     else:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f'This user doesn\'t exist {user_id}')
 
 ### Delete a user
-@app.delete('/users/{user_id}/delete', response_model=User, status_code=status.HTTP_200_OK, summary='Delete a User', tags=['Users'])
-def delete_a_user():
-    return
+@app.delete('/users/{user_id}/delete', response_model=UserRegister, status_code=status.HTTP_200_OK, summary='Delete a User', tags=['Users'])
+def delete_a_user(user_id: str = Path(example='4ed4a8f9-7d60-40aa-b5ff-c8fd79025f8d')):
+    
+    with open('users.json', 'r+', encoding='utf-8') as f:
+        results = json.loads(f.read())
 
-### Delete a user
+        for index, item in enumerate(results):
+            if item['user_id'] == user_id:
+                results.remove(item)
+                with open('users.json', 'w', encoding='utf-8') as f:
+                    f.seek(0)
+                    f.write(json.dumps(results))
+                return item
+        else:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='This user doesn\'t exist')
+
+### Update a user
 @app.put('/users/{user_id}/update', response_model=User, status_code=status.HTTP_200_OK, summary='Update a User', tags=['Users'])
 def update_a_user():
     return
-
+    
+    
     
 
 ## Tweets
@@ -210,8 +224,19 @@ def show_a_tweet(tweet_id: str = Path(example='3fa85f64-5717-4562-b3fc-2c963f66a
 
 ### Show a tweet
 @app.delete('/tweets/{tweet_id}/delete', response_model=Tweet, status_code=status.HTTP_200_OK, summary='Delete a Tweet', tags=['Tweets'])
-def delete_a_tweet():
-    return
+def delete_a_tweet(tweet_id: str = Path(example='e4f79aa6-1a1c-4615-83ca-5f6a33324409')):
+    with open('tweets.json', 'r+', encoding='utf-8') as f:
+        results = json.loads(f.read())
+
+        for index, item in enumerate(results):
+            if item['tweet_id'] == tweet_id:
+                results.remove(item)
+                with open('tweets.json', 'w', encoding='utf-8') as f:
+                    f.seek(0)
+                    f.write(json.dumps(results))
+                return item
+        else:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='This tweet doesn\'t exist')
 
 ### Delete a tweet
 @app.put('/tweets/{tweet_id}/update', response_model=Tweet, status_code=status.HTTP_200_OK, summary='Update a Tweet', tags=['Tweets'])

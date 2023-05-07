@@ -1,28 +1,15 @@
 [
     {
-        "tweet_id": "635a3d76-3fa8-4a52-b2a7-1dad4c7f71fd",
-        "content": "string",
-        "created_at": "2023-05-06 18:15:41.469287",
-        "updated_at": "2023-05-06 23:15:58.762000+00:00",
+        "tweet_id": "566880e4-17db-49a4-8326-72022268e19a",
+        "content": "Creando un API Rest",
+        "created_at": "2023-05-06 23:14:15.553652",
+        "updated_at": "2023-05-07 04:41:44.480000+00:00",
         "by": {
             "user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-            "email": "example@gmail.com",
-            "first_name": "Juan",
-            "last_name": "Gonzalez",
-            "birth_date": "2023-05-06"
-        }
-    },
-    {
-        "tweet_id": "e6346908-70bf-44ee-bc40-91de6e6c6f05",
-        "content": "string",
-        "created_at": "2023-05-06 18:15:41.469287",
-        "updated_at": "2023-05-06 23:15:58.762000+00:00",
-        "by": {
-            "user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-            "email": "example@gmail.com",
-            "first_name": "Juan",
-            "last_name": "Gonzalez",
-            "birth_date": "2023-05-06"
+            "email": "sotero@gmail.com",
+            "first_name": "Sotero",
+            "last_name": "Banguera",
+            "birth_date": "2021-03-17"
         }
     }
 ]
